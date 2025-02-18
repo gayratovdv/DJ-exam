@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h2>Are you really want to delete this book? {{ book.title }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>Are you sure?</p>
+        <button type="submit">Delete</button>
+        <a href="{% url 'books:list' %}">Cancel</a>
+    </form>
+{% endblock %}

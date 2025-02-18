@@ -1,0 +1,31 @@
+1.Savol:Django loyihasida tenik shart (TZ) asosida model tuzishda qanday qadamlar bajariladi va bu jarayonda nimalarga e'tibor berish kerak?
+1.Javob:Model yaratish (models.py da).
+Maydonlar tanlash (field turlari va xususiyatlari).
+Migration yaratish (makemigrations va migrate).
+Test qilish.
+E'tibor berish kerak: maydonlar uchun to'g'ri turlar, validatsiya va maxsus cheklovlar.
+
+
+2.Savol:Django’da foydalanuvchi autentifikatsiyasi tizimini o‘rnatishda qanday vositalar ishlatiladi?
+2.Javob:Django User model: Foydalanuvchilarni yaratish, ro'yxatdan o'tkazish va ularni boshqarish uchun User modelidan foydalaniladi.
+AuthenticationForm: Foydalanuvchi autentifikatsiyasi uchun standart formani taqdim etadi.
+Login va Logout funksiyalari: login() va logout() funksiyalari foydalanuvchini tizimga kirish va chiqish imkonini beradi.
+@login_required decorator: Sahifaga kirishdan oldin foydalanuvchi autentifikatsiyasidan o'tishini talab qiladi.
+Django Authentication views: login, logout, password_change kabi mavjud viewlar yordamida autentifikatsiyani amalga oshirish.
+django-allauth yoki django-rest-framework-jwt: Tashqi autentifikatsiya (masalan, Google, Facebook) yoki JWT token asosida autentifikatsiya qo‘llab-quvvatlash uchun kutubxonalar.
+
+
+
+3.Savol:URL marshrutlashda (URL routing) va Viewlarda DRY (Don't Repeat Yourself) prinsipini qanday amalga oshirish mumkin?
+3.Javob:URLconf va viewsni ajratish: URL va viewlarni alohida fayllarda saqlash, umumiy URL-larni include yordamida ajratish.
+Generic Views: Takrorlanadigan viewlarni generic views (masalan, ListView, DetailView) yordamida qisqartirish.
+Mixinlar: Ko‘p ishlatiladigan funksiyalarni mixinlar yordamida bir nechta viewda qayta ishlatish.
+Custom Decorators: Tekshiruvlar yoki funksiyalarni dekoratorlar orqali umumlashtirish, masalan, autentifikatsiya tekshiruvi.
+
+
+
+4.Savol:Admin panelda modelga o‘zgartirishlar kiritish (masalan, filterlar, qidiruv maydonlari) qanday amalga oshiriladi?
+4.Javob:Filterlar qo‘shish: list_filter yordamida model maydonlari bo‘yicha filtrlar qo‘shish.
+Qidiruv maydoni: search_fields yordamida qidiruv maydonini sozlash, foydalanuvchilarni ma'lum maydonlar bo‘yicha qidirish imkonini beradi.
+List ko‘rinishi: list_display yordamida admin panelda ko‘rsatiladigan maydonlarni belgilash.
+Tahrirlash maydonlari: fields yoki exclude yordamida tahrirlash uchun ko‘rsatiladigan maydonlarni tanlash.

@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <main class="detail-container">
+        <div class="detail">
+            <img src="{{ book.image.url }}" alt="Book 1" class="detail-image">
+            <h2 class="detail-title">{{ book.title }}</h2>
+            <p class="detail-author">Author: {{ book.author.name }} {{ book.author.surname }}</p>
+            <p class="detail-price">Price: ${{ book.get_price }}</p>
+            <p class="detail-description">{{ book.long_description }}</p>
+            <button class="back-button"><a href="{% url 'books:list' %}">GO back</a></button>
+        </div>
+    </main>
+{% endblock %}

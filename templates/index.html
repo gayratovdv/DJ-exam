@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+    <main class="book-container">
+        {% for book in books %}
+            <div class="book">
+                <img src="{{ book.image.url }}" alt="Book 1" class="book-image">
+                <h2 class="book-title">{{ book.title }}</h2>
+                <p class="book-author">Author: {{ book.author.name }} {{ book.author.surname }}</p>
+                <p class="book-price">Price: ${{ book.get_price }}</p>
+                <p class="book-description">{{ book.short_description }}</p>
+                <p class="book-price">{{ book.created_at }}</p>
+                <button><a href="{% url 'books:detail' pk=book.pk %}">details</a></button>
+                {% if perms.books.change_bookmodel %}
+                    <button><a href="{% url 'books:update' pk=book.pk %}">Edit</a></button>
+                {% endif %}
+                {% if perms.books.delete_bookmodel %}
+                    <button><a href="{% url 'books:delete' pk=book.pk %}">Delete</a></button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </main>
+{% endblock %}
