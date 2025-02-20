@@ -1,0 +1,37 @@
+# Python cache fayllari
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual muhit
+venv/
+env/
+*.venv/
+
+# Noto‘g‘ri sozlangan fayllar
+*.log
+*.sqlite3
+
+# IDE va muharrir fayllari
+.vscode/
+.idea/
+*.swp
+
+# Token va maxfiy sozlamalar
+.env
+*.key
+*.pem
+
+# Jupyter Notebook cache
+.ipynb_checkpoints/
+
+# Paketlar va `requirements.txt` dan qayta o‘rnatiladigan fayllar
+*.egg-info/
+dist/
+build/
+
+# MacOS'ga xos fayllar
+.DS_Store
+
+
+static
