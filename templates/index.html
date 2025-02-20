@@ -1,24 +1,42 @@
-{% extends 'layouts/base.html' %}
+{% extends 'base.html' %}
 
+{% block title %}Item List{% endblock %}
 
 {% block content %}
-    <main class="book-container">
-        {% for book in books %}
-            <div class="book">
-                <img src="{{ book.image.url }}" alt="Book 1" class="book-image">
-                <h2 class="book-title">{{ book.title }}</h2>
-                <p class="book-author">Author: {{ book.author.name }} {{ book.author.surname }}</p>
-                <p class="book-price">Price: ${{ book.get_price }}</p>
-                <p class="book-description">{{ book.short_description }}</p>
-                <p class="book-price">{{ book.created_at }}</p>
-                <button><a href="{% url 'books:detail' pk=book.pk %}">details</a></button>
-                {% if perms.books.change_bookmodel %}
-                    <button><a href="{% url 'books:update' pk=book.pk %}">Edit</a></button>
-                {% endif %}
-                {% if perms.books.delete_bookmodel %}
-                    <button><a href="{% url 'books:delete' pk=book.pk %}">Delete</a></button>
-                {% endif %}
+    <h1 class="text-3xl font-bold mb-4">Item List</h1>
+    <a href="{% url 'dir:item_create' %}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mb-4 inline-block">Add New Item</a>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for item in page_obj %}
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-xl font-semibold">{{ item.name }}</h2>
+                <p class="text-gray-600">{{ item.description }}</p>
+                <p class="text-lg font-bold mt-2">${{ item.price }}</p>
+                <p class="text-sm text-gray-500">Created: {{ item.created_at }}</p>
+                <div class="mt-4">
+                    <a href="{% url 'dir:item_update' item.id %}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mr-2">Edit</a>
+                    <a href="{% url 'dir:item_delete' item.id %}" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Delete</a>
+                </div>
             </div>
+        {% empty %}
+            <p>No items found.</p>
         {% endfor %}
-    </main>
+    </div>
+
+    <div class="mt-8">
+        <span class="mr-4">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded mr-2">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded mr-2">previous</a>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded mr-2">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded">last &raquo;</a>
+        {% endif %}
+    </div>
 {% endblock %}
+
